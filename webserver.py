@@ -1,6 +1,3 @@
-import socket #import modul socket
-import os #import modul os
-
 import socket
 import os
 
@@ -36,30 +33,19 @@ while True:
             file_content = file.read()
         # membuat HTTP response message
         response = 'HTTP/1.1 200 OK\n\n' + file_content.decode('utf-8')
-    elif request_file == "/500":
-        # membuka file HTML error_500.html dan mengirimkan isinya sebagai respon HTTP
-        file_path = os.getcwd() + '/error_500.html'
-        if os.path.isfile(file_path):
-            with open(file_path, 'rb') as file:
-                file_content = file.read()
-            response = 'HTTP/1.1 500 Internal Server Error\n\n' + file_content.decode('utf-8')
-        else:
-            response = 'HTTP/1.1 404 Not Found\n\n404 Not Found'
-    elif request_file == "/300":
-        # membuka file HTML error_300.html dan mengirimkan isinya sebagai respon HTTP
-        file_path = os.getcwd() + '/error_300.html'
-        if os.path.isfile(file_path):
-            with open(file_path, 'rb') as file:
-                file_content = file.read()
-            response = 'HTTP/1.1 300 Multiple Choices\n\n' + file_content.decode('utf-8')
-        else:
-            response = 'HTTP/1.1 404 Not Found\n\n404 Not Found'
     else:
         # jika file tidak ditemukan, mengirimkan pesan "404 Not Found"
-        response = 'HTTP/1.1 404 Not Found\n\n404 Not Found'
+        file_path = os.getcwd() + '/error/404.html'
+        if os.path.isfile(file_path):
+            with open(file_path, 'rb') as file:
+                file_content = file.read()
+            response = 'HTTP/1.1 404 Multiple Choices\n\n' + file_content.decode('utf-8')
+        else:
+            response = 'HTTP/1.1 404 Not Found\n\n404 Not Found'        
 
     # mengirimkan response message ke client
     client_socket.sendall(response.encode('utf-8'))
 
     # menutup koneksi dengan client
     client_socket.close()
+    
