@@ -9,7 +9,7 @@ server_address = ('localhost', 8080)
 server_socket.bind(server_address)
 
 # mendengarkan koneksi masuk
-server_socket.listen(1)
+server_socket.listen(5)
 print('Server is listening on port 8080...')
 
 while True:
@@ -48,4 +48,3 @@ while True:
 
     # menutup koneksi dengan client
     client_socket.close()
-    
