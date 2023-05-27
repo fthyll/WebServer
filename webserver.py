@@ -46,13 +46,5 @@ while True:
     # mengirimkan response message ke client
     client_socket.sendall(response.encode('utf-8'))
 
-    # menerima pesan dari client
-    client_message = client_socket.recv(1024).decode('utf-8')
-    print(f'Received message from client: {client_message}')
-
-    # mengirimkan respon ke client
-    server_response = 'Server received your message: ' + client_message
-    client_socket.sendall(server_response.encode('utf-8'))
-
     # menutup koneksi dengan client
     client_socket.close()
