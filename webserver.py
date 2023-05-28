@@ -1,28 +1,28 @@
-import socket
-import os
+import socket # mengimpor library socket
+import os # mengimpor library os
 
 # membuat socket TCP
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # IPv4, TCP
 
 # mengaitkan socket ke alamat dan port tertentu
-server_address = ('localhost', 8080)
-server_socket.bind(server_address)
+server_address = ('localhost', 8080) # alamat IP dan port
+server_socket.bind(server_address) # mengikat socket ke alamat dan port
 
 # mendengarkan koneksi masuk
-server_socket.listen(5)
-print('Server is listening on port 8080...')
+server_socket.listen(5) # parameter: jumlah koneksi yang dapat diterima
+print('Server is listening on port 8080...') # pesan yang akan ditampilkan
 
 while True:
     # menerima koneksi masuk
-    client_socket, client_address = server_socket.accept()
-    print(f'Connection from {client_address} has been established!')
+    client_socket, client_address = server_socket.accept() # parameter: socket dan alamat client
+    print(f'Connection from {client_address} has been established!') # pesan yang akan ditampilkan
 
     # menerima data dari client
-    data = client_socket.recv(1024).decode('utf-8')
-    print(f'Received data from client: {data}')
+    data = client_socket.recv(1024).decode('utf-8') # parameter: jumlah byte yang akan diterima
+    print(f'Received data from client: {data}') # pesan yang akan ditampilkan
 
     # memparsing HTTP request
-    request_method = data.split(' ')[0]
+    request_method = data.split(' ')[0] # mengambil request method
     request_file = data.split(' ')[1]
 
     # mencari file yang diminta oleh client
